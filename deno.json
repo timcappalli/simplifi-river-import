@@ -1,0 +1,15 @@
+{
+  "name": "simplifi-river-import",
+  "version": "1.0.0",
+  "exports": "./main.ts",
+  "tasks": {
+    "start": "deno run --allow-read --allow-env --allow-net main.ts",
+    "test": "deno test --allow-read --allow-env --allow-net"
+  },
+  "imports": {
+    "@std/csv": "jsr:@std/csv@^1.0.4",
+    "@std/cli": "jsr:@std/cli@^1.0.6",
+    "@std/dotenv": "jsr:@std/dotenv@^0.225.2",
+    "@std/assert": "jsr:@std/assert@^1.0.6"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "bearerToken": "YOUR_SIMPLIFI_BEARER_TOKEN",
+  "datasetId": "203410654309383424",
+  "accountId": "553800778533061120",
+  "defaultPayee": "Tim Cappalli",
+  "symbol": "^BTCUSD",
+  "securityName": "Bitcoin - USD",
+  "localSecurityId": "553802012631515648",
+  "securityIdType": "QCSSYMBOL",
+  "transferCoa": {
+    "type": "BALANCE_ADJUSTMENT",
+    "id": "2"
+  },
+  "uncategorizedCoa": {
+    "type": "UNCATEGORIZED",
+    "id": "0"
+  },
+  "dryRun": false
+}

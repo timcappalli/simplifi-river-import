@@ -1,0 +1,10 @@
+[tools]
+deno = "latest"
+
+[tasks.start]
+description = "Run the River Financial to Simplifi importer"
+run = "deno task start"
+
+[tasks.test]
+description = "Run unit tests"
+run = "deno task test"
