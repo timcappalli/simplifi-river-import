@@ -4,7 +4,7 @@ A Deno / TypeScript application to parse transaction CSV exports from River Fina
 
 ## Features
 
-- **Buy (ACH Bank Transfer)**: Creates a Cash Flow deposit (`CASH_FLOW`, payee "Tim Cappalli", category "BALANCE_ADJUSTMENT") and an Investment Buy transaction (`INVESTMENT`, `investmentTxnType: "BUY"`).
+- **Buy (ACH Bank Transfer)**: Creates a Cash Flow deposit (`CASH_FLOW`, category "BALANCE_ADJUSTMENT") and an Investment Buy transaction (`INVESTMENT`, `investmentTxnType: "BUY"`).
 - **Buy (Cash Balance)**: Creates an Investment Buy transaction (`INVESTMENT`, `investmentTxnType: "BUY"`).
 - **Cash Deposit**: Creates a Cash Flow deposit transaction (`CASH_FLOW`).
 - **Cash Withdrawal**: Creates a Cash Flow withdrawal transaction (`CASH_FLOW` with negative amount).
@@ -12,6 +12,7 @@ A Deno / TypeScript application to parse transaction CSV exports from River Fina
 - **Sell**: Creates an Investment transaction (`INVESTMENT`, `investmentTxnType: "SELL"`).
 - **Internal Transfers**: Automatically filtered out and ignored.
 - **State Persistence & Resume**: Saves progress automatically after each successful transaction. If an import is interrupted (e.g. token expiration, network error, or rate limits), re-running the tool prompts you to resume where you left off.
+- **Configurable Payee**: Set payee via `config.json`, `.env` (`SIMPLIFI_DEFAULT_PAYEE`), or `--payee <name>` (defaults to `"Unknown"` if omitted).
 - **Config & Auth**: Supports configuration via `config.json`, `.env`, environment variables, or CLI arguments.
 - **Chrome User-Agent**: Uses standard Chrome headers (`user-agent`, `sec-ch-ua`, etc.) for API requests.
 - **Dry-Run Mode**: Inspect generated API payloads without sending HTTP requests.
@@ -33,7 +34,7 @@ Create a `config.json` file based on `config.example.json`:
   "bearerToken": "YOUR_SIMPLIFI_BEARER_TOKEN",
   "datasetId": "203410654309383424",
   "accountId": "553800778533061120",
-  "defaultPayee": "Tim Cappalli",
+  "defaultPayee": "Unknown",
   "symbol": "^BTCUSD",
   "securityName": "Bitcoin - USD",
   "localSecurityId": "553802012631515648",
@@ -49,6 +50,7 @@ Create a `.env` file in the root directory:
 SIMPLIFI_BEARER_TOKEN=YOUR_SIMPLIFI_BEARER_TOKEN
 SIMPLIFI_DATASET_ID=203410654309383424
 SIMPLIFI_ACCOUNT_ID=553800778533061120
+SIMPLIFI_DEFAULT_PAYEE=Unknown
 ```
 
 ## How to Find Simplifi API Credentials
@@ -84,7 +86,7 @@ To find your Simplifi API credentials (`bearerToken`, `datasetId`, `accountId`, 
 
 ### 3. `accountId`
 - **What it is**: The internal 18-digit Simplifi ID for your specific investment/brokerage account.
-- **Where to find it**:
+- **Where to find it**: 
   - Click on your Bitcoin / River Financial account under **Investments** or **Accounts** in Simplifi.
   - In the DevTools Network tab, filter requests by `transactions` or `accounts`.
   - Look at the Request Payload or Response JSON for your account's `"accountId"` field:
@@ -127,7 +129,8 @@ deno task start \
   --file river.csv \
   --token "YOUR_BEARER_TOKEN" \
   --dataset-id "203410654309383424" \
-  --account-id "553800778533061120"
+  --account-id "553800778533061120" \
+  --payee "John Doe"
 ```
 
 ### Run Unit Tests

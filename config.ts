@@ -69,7 +69,7 @@ export async function loadConfig(args: string[]): Promise<AppConfig> {
     parsedArgs.payee ||
     Deno.env.get("SIMPLIFI_DEFAULT_PAYEE") ||
     fileConfig.defaultPayee ||
-    "Tim Cappalli";
+    "Unknown";
 
   const symbol =
     parsedArgs.symbol ||

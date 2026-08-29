@@ -21,7 +21,7 @@ Options:
   -t, --token <bearer_token>     Simplifi API Bearer token
   -d, --dataset-id <id>          Simplifi dataset ID (qcs-dataset-id)
   -a, --account-id <id>          Simplifi account ID
-  -p, --payee <name>             Default payee name for transfers (default: "Tim Cappalli")
+  -p, --payee <name>             Default payee name for transfers (default: "Unknown")
   -r, --resume                   Automatically resume from last saved state without asking
       --fresh                    Ignore saved state and start fresh from the beginning
   -n, --dry-run                  Preview generated API payloads without sending HTTP requests

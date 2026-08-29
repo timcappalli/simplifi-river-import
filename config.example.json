@@ -2,7 +2,7 @@
   "bearerToken": "YOUR_SIMPLIFI_BEARER_TOKEN",
   "datasetId": "203410654309383424",
   "accountId": "553800778533061120",
-  "defaultPayee": "Tim Cappalli",
+  "defaultPayee": "Unknown",
   "symbol": "^BTCUSD",
   "securityName": "Bitcoin - USD",
   "localSecurityId": "553802012631515648",
