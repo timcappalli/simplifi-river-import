@@ -57,7 +57,7 @@ SIMPLIFI_DEFAULT_PAYEE=Unknown
 
 To find your Simplifi API credentials (`bearerToken`, `datasetId`, `accountId`, `localSecurityId`), open Simplifi in Google Chrome and inspect network requests using Developer Tools:
 
-1. Open **https://simplifi.quicken.com** in Google Chrome and log in to your account.
+1. Open **<https://simplifi.quicken.com>** in Google Chrome and log in to your account.
 2. Open Chrome Developer Tools by pressing `F12` (or `Cmd + Option + I` on Mac / `Ctrl + Shift + I` on Windows).
 3. Switch to the **Network** tab.
 4. Perform an action in Simplifi (e.g., click on your target account or refresh the page) to trigger API calls to `services.quicken.com`.
@@ -66,18 +66,23 @@ To find your Simplifi API credentials (`bearerToken`, `datasetId`, `accountId`, 
 ---
 
 ### 1. `bearerToken` (Authorization Token)
+
 - **What it is**: Your active session authentication token.
 - **Where to find it**: In the DevTools Network tab, inspect the **Headers** -> **Request Headers** section of any request to `services.quicken.com`. Look for:
+
   ```http
   authorization: Bearer eyJhbGci...
   ```
-  Copy the long token string after `Bearer `.
+
+  Copy the long token string after `Bearer`.
 
 ---
 
 ### 2. `datasetId` (`qcs-dataset-id`)
+
 - **What it is**: The unique 18-digit ID for your Quicken / Simplifi user dataset.
 - **Where to find it**: In the **Request Headers** section of any request to `services.quicken.com`, look for:
+
   ```http
   qcs-dataset-id: 203410654309383424
   ```
@@ -85,11 +90,13 @@ To find your Simplifi API credentials (`bearerToken`, `datasetId`, `accountId`, 
 ---
 
 ### 3. `accountId`
+
 - **What it is**: The internal 18-digit Simplifi ID for your specific investment/brokerage account.
-- **Where to find it**: 
+- **Where to find it**:
   - Click on your Bitcoin / River Financial account under **Investments** or **Accounts** in Simplifi.
   - In the DevTools Network tab, filter requests by `transactions` or `accounts`.
   - Look at the Request Payload or Response JSON for your account's `"accountId"` field:
+
     ```json
     "accountId": "553800778533061120"
     ```
@@ -97,13 +104,16 @@ To find your Simplifi API credentials (`bearerToken`, `datasetId`, `accountId`, 
 ---
 
 ### 4. `localSecurityId`
+
 - **What it is**: The internal Simplifi ID assigned to symbol `^BTCUSD` (Bitcoin - USD) within your specific dataset.
 - **Where to find it**:
   - Filter Network requests in DevTools by `transactions` or `holdings`.
   - Inspect any payload or response containing `"symbol": "^BTCUSD"`. Look for `"localSecurityId"`:
+
     ```json
     "localSecurityId": "553802012631515648"
     ```
+
   - *Note*: If you aren't sure of your `localSecurityId`, the importer includes automatic 409 Conflict resolution to detect and update `localSecurityId` automatically!
 
 ---
